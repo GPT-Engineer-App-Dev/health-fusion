@@ -48,6 +48,10 @@ const Sidebar = () => (
               {item.title}
             </SidebarNavLink>
           ))}
+          <SidebarNavLink key="/progress" to="/progress">
+            {item.icon}
+            Progress
+          </SidebarNavLink>
         </nav>
       </div>
     </div>
@@ -76,6 +80,9 @@ const MobileSidebar = () => (
             {item.title}
           </SidebarNavLink>
         ))}
+        <SidebarNavLink key="/progress" to="/progress">
+          Progress
+        </SidebarNavLink>
       </nav>
     </SheetContent>
   </Sheet>
