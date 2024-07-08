@@ -49,7 +49,6 @@ const Sidebar = () => (
             </SidebarNavLink>
           ))}
           <SidebarNavLink key="/progress" to="/progress">
-            {item.icon}
             Progress
           </SidebarNavLink>
         </nav>
