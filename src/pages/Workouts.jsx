@@ -1,31 +1,29 @@
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import WorkoutForm from "@/components/WorkoutForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useQuery } from "@tanstack/react-query";
 
 const Workouts = () => {
-  const { data: workouts, error, isLoading } = useQuery({
-    queryKey: ["workouts"],
-    queryFn: fetchWorkouts,
-  });
+  const [workouts, setWorkouts] = useState([]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading data</div>;
+  const handleLogWorkout = (workout) => {
+    setWorkouts([...workouts, workout]);
+  };
 
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Workouts</h1>
-        <Button>Add New Workout</Button>
       </div>
+      <WorkoutForm onSubmit={handleLogWorkout} />
       <Card>
         <CardHeader>
           <CardTitle>All Workouts</CardTitle>
         </CardHeader>
         <CardContent>
           <ul>
-            {workouts.map((workout) => (
-              <li key={workout.id}>
-                {workout.type} - {workout.duration} mins - {workout.caloriesBurned} calories
+            {workouts.map((workout, index) => (
+              <li key={index}>
+                {workout.date.toLocaleDateString()} - {workout.exerciseName} - {workout.sets} sets x {workout.reps} reps @ {workout.weight} kg
               </li>
             ))}
           </ul>
@@ -33,12 +31,6 @@ const Workouts = () => {
       </Card>
     </div>
   );
-};
-
-const fetchWorkouts = async () => {
-  const response = await fetch("/api/workouts");
-  if (!response.ok) throw new Error("Network response was not ok");
-  return response.json();
 };
 
 export default Workouts;
