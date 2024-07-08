@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { CircleUser, Menu, Package2 } from "lucide-react";
+import { CircleUser, Menu, Package2, ChartLine } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import { navItems } from "../App";
 
@@ -48,6 +48,10 @@ const Sidebar = () => (
               {item.title}
             </SidebarNavLink>
           ))}
+          <SidebarNavLink key="progress" to="/progress">
+            <ChartLine className="h-4 w-4" />
+            Progress
+          </SidebarNavLink>
         </nav>
       </div>
     </div>
@@ -76,6 +80,9 @@ const MobileSidebar = () => (
             {item.title}
           </SidebarNavLink>
         ))}
+        <SidebarNavLink key="progress" to="/progress">
+          Progress
+        </SidebarNavLink>
       </nav>
     </SheetContent>
   </Sheet>
